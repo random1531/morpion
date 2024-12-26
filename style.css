@@ -116,7 +116,19 @@ body {
 }
 
 
-
 #resultsTable{
     border: 1px solid black;
+}
+
+@media (max-width: 768px) {
+
+    #played {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+ 
 }
