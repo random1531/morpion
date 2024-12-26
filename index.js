@@ -6,7 +6,7 @@ const playerName = document.getElementById("playerName");
 const start = document.getElementById("start");
 const result = document.getElementById("result");
 const restart = document.getElementById("restart");
-const morpion = document.getElementById("morpion");
+const morpion = document.getElementById("played");
 const container = document.querySelector(".container");
 let playerNameValue = playerName.value;
 let party = 1; ;
@@ -14,11 +14,10 @@ let party = 1; ;
 start.addEventListener("click", () => {
   playerNameValue = playerName.value;
   console.log(playerNameValue);
-  morpion.style.display = "grid";
+  morpion.style.display = "flex";
   container.style.display = "none";
   StartPartie();
   document.querySelector(".containerWin").style.display = "none";
-
 });
 
 restart.addEventListener("click", () => {
@@ -116,13 +115,14 @@ function winVerification() {
       cases[8].textContent !== ""
     ) {
       result.textContent = "Match nul";
-      updateResultsTable("Player", "Draw");
+      updateResultsTable("Player", "Match nul");
       document.querySelector(".containerWin").style.display = "block";
     }
+    
   });
 }
 
-function updateResultsTable(player, result) {
+function updateResultsTable() {
   const row = document.createElement("tr");
   const playerCell = document.createElement("td");
   const resultCell = document.createElement("td");
