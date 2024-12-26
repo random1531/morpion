@@ -34,6 +34,9 @@ start.addEventListener("click", () => {
 restart.addEventListener("click", () => {
   document.querySelector(".containerWin").style.display = "none";
   StartPartie();
+  cases.forEach((cases) => {
+    cases.classList.remove('winning');
+  });
   party++;
 });
 
@@ -120,6 +123,9 @@ function winVerification() {
         currentPlayer === Player ? playerNameValue : "Bot",
         "Win"
       );
+      combination.forEach(index => {
+        cases[index].classList.add('winning');
+      });
       gameWon = true;
     }
   });
