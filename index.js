@@ -57,24 +57,20 @@ addEventListener("click", (e) => {
   if (
     currentPlayer === Player &&
     e.target.classList.contains("case") &&
-    document.querySelector(".containerWin").style.display === "none"
+    document.querySelector(".containerWin").style.display === "none" &&
+    e.target.textContent === ""
   ) {
     e.target.textContent = currentPlayer;
     if (!winVerification()) {
       currentPlayer = Bot;
     }
-  } else {
-    
-    
-  }
+  } 
   if (currentPlayer === Bot  && document.querySelector(".containerWin").style.display === "none") {
     setTimeout(() => {
       getRandom();
       if (!winVerification()) {
         currentPlayer = Player;
-      } else {
-       
-      }
+      } 
     }, 500);
   }
 });
@@ -89,45 +85,38 @@ function winVerification() {
     [0, 4, 8],
     [2, 4, 6],
   ];
+  let gameWon = false;
   win.forEach((combination) => {
     if (
       cases[combination[0]].textContent === currentPlayer &&
       cases[combination[1]].textContent === currentPlayer &&
       cases[combination[2]].textContent === currentPlayer
-    )  {
-      console.log("win");
+    ) {
       result.textContent =
         "Le joueur " +
         (currentPlayer === Player ? playerNameValue : "Bot") +
         " a gagné";
       document.querySelector(".containerWin").style.display = "block";
-      updateResultsTable("Player", "Win");
-    } 
-  else if (
-      cases[0].textContent !== "" &&
-      cases[1].textContent !== "" &&
-      cases[2].textContent !== "" &&
-      cases[3].textContent !== "" &&
-      cases[4].textContent !== "" &&
-      cases[5].textContent !== "" &&
-      cases[6].textContent !== "" &&
-      cases[7].textContent !== "" &&
-      cases[8].textContent !== ""
-    ) {
-      result.textContent = "Match nul";
-      updateResultsTable("Player", "Match nul");
-      document.querySelector(".containerWin").style.display = "block";
+      updateResultsTable(currentPlayer === Player ? playerNameValue : "Bot", "Win");
+      gameWon = true;
     }
-    
   });
+  if (!gameWon && Array.from(cases).every((caseElement) => caseElement.textContent !== "")) {
+    result.textContent = "Match nul";
+    updateResultsTable("", "Match nul");
+    document.querySelector(".containerWin").style.display = "block";
+  }
 }
 
-function updateResultsTable() {
+function updateResultsTable(player, result) {
   const row = document.createElement("tr");
   const playerCell = document.createElement("td");
   const resultCell = document.createElement("td");
-  playerCell.textContent = party;
-  resultCell.textContent = currentPlayer === Player ? playerNameValue : "Bot";
+  const Party = document.createElement("td");
+  Party.textContent = party;
+  playerCell.textContent = player;
+  resultCell.textContent = result;
+  row.appendChild(Party);
   row.appendChild(playerCell);
   row.appendChild(resultCell);
   resultsTable.appendChild(row);
