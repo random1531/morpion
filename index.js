@@ -12,7 +12,11 @@ const play = document.getElementById("player");
 let playerNameValue = playerName.value;
 let party = 1;
 const turn = document.getElementById("turn");
+const caseCount = document.querySelectorAll(".case");
 
+
+
+// Setup nom du joueur 
 playerName.addEventListener("input", () => {
   if (playerName.value === "") {
     start.disabled = true;
@@ -21,9 +25,10 @@ playerName.addEventListener("input", () => {
   }  
 });
 
+
+//On commence la partie en appuiyant sur le bouton jouer
 start.addEventListener("click", () => {
-  playerNameValue = playerName.value;
-  console.log(playerNameValue);
+  playerNameValue = playerName.value; 
   play.textContent = `${playerNameValue} vs Bot`;
   morpion.style.display = "flex";
   container.style.display = "none";
@@ -31,6 +36,7 @@ start.addEventListener("click", () => {
   document.querySelector(".containerWin").style.display = "none";
 });
 
+//On recommence une partie
 restart.addEventListener("click", () => {
   document.querySelector(".containerWin").style.display = "none";
   StartPartie();
@@ -40,15 +46,18 @@ restart.addEventListener("click", () => {
   party++;
 });
 
+
+// Fonction pour commencer une partie 
 const StartPartie = () => {
+  // On remet à zéro le tableau de jeu
   cases.forEach((cases) => {
     cases.textContent = "";
   });
+  // On genere un nombre aléatoire pour savoir qui commence
   const random = Math.floor(Math.random() * 2);
   if (random === 0) {
     currentPlayer = Player;
     turn.textContent = "C'est à vous de jouer";
-
   } else {
     currentPlayer = Bot;
     turn.textContent = "C'est à l'ordinateur de jouer";
@@ -57,10 +66,13 @@ const StartPartie = () => {
     turn.textContent = "C'est à vous de jouer";
   }
 };
+
+// Fonction pour changer de joueur
 function switchPlayer() {
   currentPlayer = currentPlayer === Player ? Bot : Player;
 }
 
+// Fonction pour générer un nombre aléatoire pour l'ordinateur
 function getRandom() {
   const random = Math.floor(Math.random() * 9);
   if (cases[random].textContent === "") {
@@ -70,6 +82,9 @@ function getRandom() {
   }
 }
 
+// Fonction pour ajouter un event listener sur chaque case
+// On vérifie si la case est vide et si c'est au tour du joueur
+// On vérifie si le joueur a gagné
 addEventListener("click", (e) => {
   if (
     currentPlayer === Player &&
@@ -96,7 +111,11 @@ addEventListener("click", (e) => {
     }, 500);
   }
 });
+
+
+// Fonction pour vérifier si un joueur a gagné
 function winVerification() {
+  //Tableau des combinaisons gagnantes
   const win = [
     [0, 1, 2],
     [3, 4, 5],
@@ -139,6 +158,7 @@ function winVerification() {
   }
 }
 
+// Fonction pour mettre à jour le tableau des résultats
 function updateResultsTable(player, result) {
   const row = document.createElement("tr");
   const playerCell = document.createElement("td");
