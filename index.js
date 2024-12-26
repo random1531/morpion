@@ -8,8 +8,10 @@ const result = document.getElementById("result");
 const restart = document.getElementById("restart");
 const morpion = document.getElementById("played");
 const container = document.querySelector(".container");
+const play = document.getElementById("player");
 let playerNameValue = playerName.value;
 let party = 1;
+const turn = document.getElementById("turn");
 
 playerName.addEventListener("input", () => {
   if (playerName.value === "") {
@@ -22,6 +24,7 @@ playerName.addEventListener("input", () => {
 start.addEventListener("click", () => {
   playerNameValue = playerName.value;
   console.log(playerNameValue);
+  play.textContent = `${playerNameValue} vs Bot`;
   morpion.style.display = "flex";
   container.style.display = "none";
   StartPartie();
@@ -41,10 +44,14 @@ const StartPartie = () => {
   const random = Math.floor(Math.random() * 2);
   if (random === 0) {
     currentPlayer = Player;
+    turn.textContent = "C'est à vous de jouer";
+
   } else {
     currentPlayer = Bot;
+    turn.textContent = "C'est à l'ordinateur de jouer";
     getRandom();
     currentPlayer = Player;
+    turn.textContent = "C'est à vous de jouer";
   }
 };
 function switchPlayer() {
@@ -69,6 +76,7 @@ addEventListener("click", (e) => {
   ) {
     e.target.textContent = currentPlayer;
     if (!winVerification()) {
+      turn.textContent = "C'est à l'ordinateur de jouer";
       currentPlayer = Bot;
     }
   }
@@ -79,6 +87,7 @@ addEventListener("click", (e) => {
     setTimeout(() => {
       getRandom();
       if (!winVerification()) {
+        turn.textContent = "C'est à vous de jouer";
         currentPlayer = Player;
       }
     }, 500);

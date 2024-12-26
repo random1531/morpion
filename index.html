@@ -8,53 +8,57 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Morpion</h1>
-    <h2 id="player"></h2>
-    <div class="container">
-      <input type="text" id="playerName" placeholder="Nom du joueur" />
-      <button id="start" class="btn" disabled>Jouer</button>
+    <div class="container_all ">
 
-    </div>
-
-    <div class="containerWin">
-      <div class="w">
-        <p id="result"></p>
-        <button id="restart" class="btn">Rejouer</button>
-
-      </div>
-    </div>
-
-    <div id="played">
-
-      
-      <div id="morpion">
-        <div class="case"></div>
-        <div class="case"></div>
-        <div class="case"></div>
-        <div class="case"></div>
-        <div class="case"></div>
-        <div class="case"></div>
-        <div class="case"></div>
-        <div class="case"></div>
-        <div class="case"></div>
+      <h1>Morpion</h1>
+      <h2 id="player"></h2>
+      <p id="turn"></p>
+      <div class="container">
+        <input type="text" id="playerName" placeholder="Nom du joueur" />
+        <button id="start" class="btn" disabled>Jouer</button>
+        
       </div>
       
-      
-      <div>
-        <table id="resultsTable">
-          <thead>
-            <tr>
-              <th>Partie</th>
-              <th>Joueur</th>
-              <th>Resultat</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+      <div class="containerWin">
+        <div class="w">
+          <p id="result"></p>
+          <button id="restart" class="btn">Rejouer</button>
+          
+        </div>
       </div>
+      
+      <div id="played">
+        
+        
+        <div id="morpion">
+          <div class="case"></div>
+          <div class="case"></div>
+          <div class="case"></div>
+          <div class="case"></div>
+          <div class="case"></div>
+          <div class="case"></div>
+          <div class="case"></div>
+          <div class="case"></div>
+          <div class="case"></div>
+        </div>
+        
+        
+        <div>
+          <table id="resultsTable">
+            <thead>
+              <tr>
+                <th>Partie</th>
+                <th>Joueur</th>
+                <th>Resultat</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      
     </div>
-      
-      
     </body>
 </html>
