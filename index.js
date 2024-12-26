@@ -9,7 +9,15 @@ const restart = document.getElementById("restart");
 const morpion = document.getElementById("played");
 const container = document.querySelector(".container");
 let playerNameValue = playerName.value;
-let party = 1; ;
+let party = 1;
+
+playerName.addEventListener("input", () => {
+  if (playerName.value === "") {
+    start.disabled = true;
+  } else {
+    start.disabled = false;
+  }  
+});
 
 start.addEventListener("click", () => {
   playerNameValue = playerName.value;
@@ -37,7 +45,6 @@ const StartPartie = () => {
     currentPlayer = Bot;
     getRandom();
     currentPlayer = Player;
-    
   }
 };
 function switchPlayer() {
@@ -50,7 +57,7 @@ function getRandom() {
     cases[random].textContent = Bot;
   } else {
     getRandom();
-  }  
+  }
 }
 
 addEventListener("click", (e) => {
@@ -64,13 +71,16 @@ addEventListener("click", (e) => {
     if (!winVerification()) {
       currentPlayer = Bot;
     }
-  } 
-  if (currentPlayer === Bot  && document.querySelector(".containerWin").style.display === "none") {
+  }
+  if (
+    currentPlayer === Bot &&
+    document.querySelector(".containerWin").style.display === "none"
+  ) {
     setTimeout(() => {
       getRandom();
       if (!winVerification()) {
         currentPlayer = Player;
-      } 
+      }
     }, 500);
   }
 });
@@ -97,11 +107,17 @@ function winVerification() {
         (currentPlayer === Player ? playerNameValue : "Bot") +
         " a gagné";
       document.querySelector(".containerWin").style.display = "block";
-      updateResultsTable(currentPlayer === Player ? playerNameValue : "Bot", "Win");
+      updateResultsTable(
+        currentPlayer === Player ? playerNameValue : "Bot",
+        "Win"
+      );
       gameWon = true;
     }
   });
-  if (!gameWon && Array.from(cases).every((caseElement) => caseElement.textContent !== "")) {
+  if (
+    !gameWon &&
+    Array.from(cases).every((caseElement) => caseElement.textContent !== "")
+  ) {
     result.textContent = "Match nul";
     updateResultsTable("", "Match nul");
     document.querySelector(".containerWin").style.display = "block";

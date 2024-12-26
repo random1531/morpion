@@ -81,24 +81,22 @@ body {
     box-sizing: border-box;
 }
 
-.container{
+.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
-#played{
+#played {
     display: none;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    
 }
 
-
-#resultsTable th{
-    text-align: center;    
+#resultsTable th {
+    text-align: center;
     top: 0;
     left: 0;
     width: 100%;
@@ -106,8 +104,8 @@ body {
     background-color: rgba(141, 141, 141, 0.5);
 }
 
-#resultsTable td{
-    text-align: center;    
+#resultsTable td {
+    text-align: center;
     top: 0;
     left: 0;
     width: 100%;
@@ -115,20 +113,23 @@ body {
     border: 1px solid black;
 }
 
-
-#resultsTable{
+#resultsTable {
     border: 1px solid black;
 }
 
 @media (max-width: 768px) {
-
     #played {
-        
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 20px;
     }
+    .w {
+        width: 80%;
+    }
 
- 
+    #result {
+        font-size: 50px;
+        width: 100%;
+    }
 }
